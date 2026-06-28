@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>[Nama Usaha] — [Moto Usaha]</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* ─── TOKEN SYSTEM ─── */
+    :root {
+      --clr-primary:   #1B4332;   /* hijau tua — kesan syariah, amanah */
+      --clr-accent:    #D4A853;   /* emas — premium, kepercayaan */
+      --clr-bg:        #F9F6F0;   /* krem hangat */
+      --clr-surface:   #FFFFFF;
+      --clr-text:      #1A1A1A;
+      --clr-muted:     #6B7280;
+      --clr-border:    #E5E0D8;
+
+      --font-display: 'Playfair Display', serif;
+      --font-body:    'Plus Jakarta Sans', sans-serif;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+
+      --shadow-card: 0 2px 16px rgba(0,0,0,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      background: var(--clr-primary);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--clr-accent);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--clr-accent); }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(135deg, var(--clr-primary) 0%, #2D6A4F 60%, #40916C 100%);
+      color: white;
+      padding: 96px 24px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(212,168,83,0.2);
+      border: 1px solid var(--clr-accent);
+      color: var(--clr-accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span { color: var(--clr-accent); }
+
+    .hero-moto {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+
+    .hero-nib {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 36px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--clr-accent);
+      color: var(--clr-primary);
+    }
+
+    .btn-primary:hover { background: #e0b660; transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 1.5px solid rgba(255,255,255,0.4);
+    }
+
+    .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 72px 0; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--clr-accent);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--clr-primary);
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      color: var(--clr-muted);
+      max-width: 480px;
+      font-size: 0.95rem;
+    }
+
+    .section-head { margin-bottom: 40px; }
+
+    /* ─── PRODUK / RAK ─── */
+    #produk { background: var(--clr-surface); }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--clr-bg);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: var(--clr-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-muted);
+      font-size: 0.85rem;
+    }
+
+    .product-info { padding: 16px; }
+
+    .product-name {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: var(--clr-primary);
+    }
+
+    .product-desc {
+      font-size: 0.85rem;
+      color: var(--clr-muted);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .product-price {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--clr-accent);
+      font-weight: 700;
+    }
+
+    /* ─── TENTANG ─── */
+    #tentang { background: var(--clr-bg); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .about-img-placeholder {
+      width: 100%;
+      height: 340px;
+      background: var(--clr-border);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-muted);
+      font-size: 0.9rem;
+    }
+
+    .about-list {
+      list-style: none;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .about-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 0.95rem;
+      color: var(--clr-muted);
+    }
+
+    .about-list li::before {
+      content: '✦';
+      color: var(--clr-accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ─── SOSMED & LINKTREE ─── */
+    #sosmed { background: var(--clr-surface); }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .link-card {
+      background: var(--clr-bg);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .link-card:hover {
+      border-color: var(--clr-accent);
+      box-shadow: 0 0 0 3px rgba(212,168,83,0.15);
+    }
+
+    .link-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--clr-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .link-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--clr-primary);
+    }
+
+    .link-handle {
+      font-size: 0.78rem;
+      color: var(--clr-muted);
+    }
+
+    /* ─── PEMBAYARAN ─── */
+    #pembayaran { background: var(--clr-bg); }
+
+    .payment-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .payment-card {
+      background: var(--clr-surface);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .payment-card h3 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--clr-muted);
+      margin-bottom: 16px;
+    }
+
+    .payment-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--clr-border);
+      font-size: 0.9rem;
+    }
+
+    .payment-item:last-child { border-bottom: none; }
+
+    .payment-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--clr-accent);
+      flex-shrink: 0;
+    }
+
+    .qris-placeholder {
+      width: 100%;
+      height: 140px;
+      background: var(--clr-border);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-muted);
+      font-size: 0.85rem;
+      margin-top: 12px;
+    }
+
+    /* ─── KONTAK & MAP ─── */
+    #kontak { background: var(--clr-surface); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(27,67,50,0.08);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--clr-muted);
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 0.95rem;
+      color: var(--clr-text);
+      font-weight: 500;
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 280px;
+      background: var(--clr-border);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-muted);
+      font-size: 0.9rem;
+    }
+
+    /* ─── POLICY ─── */
+    #policy { background: var(--clr-bg); }
+
+    .policy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .policy-card {
+      background: var(--clr-surface);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .policy-card h3 {
+      color: var(--clr-primary);
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .policy-card p {
+      color: var(--clr-muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    /* ─── PENGIRIMAN ─── */
+    #pengiriman { background: var(--clr-surface); }
+
+    .shipping-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .shipping-badge {
+      background: rgba(27,67,50,0.07);
+      color: var(--clr-primary);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .ecommerce-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .ecommerce-card {
+      background: var(--clr-bg);
+      border: 1.5px solid var(--clr-border);
+      border-radius: var(--radius-md);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* ─── TIM ─── */
+    #tim { background: var(--clr-bg); }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 24px;
+    }
+
+    .team-card {
+      background: var(--clr-surface);
+      border-radius: var(--radius-md);
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+    }
+
+    .team-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--clr-border);
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+
+    .team-name {
+      font-weight: 700;
+      color: var(--clr-primary);
+      margin-bottom: 4px;
+    }
+
+    .team-role {
+      font-size: 0.8rem;
+      color: var(--clr-muted);
+    }
+
+    /* ─── PENGADUAN ─── */
+    #pengaduan { background: var(--clr-surface); }
+
+    .complaint-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      padding-left: 36px;
+    }
+
+    .complaint-steps::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--clr-border);
+    }
+
+    .complaint-step {
+      position: relative;
+      padding-bottom: 28px;
+    }
+
+    .step-dot {
+      position: absolute;
+      left: -36px;
+      top: 4px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--clr-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      z-index: 1;
+    }
+
+    .step-title {
+      font-weight: 700;
+      color: var(--clr-primary);
+      margin-bottom: 4px;
+    }
+
+    .step-desc {
+      font-size: 0.88rem;
+      color: var(--clr-muted);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--clr-primary);
+      color: rgba(255,255,255,0.7);
+      padding: 48px 0 28px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand-name {
+      font-family: var(--font-display);
+      color: var(--clr-accent);
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .footer-brand-desc {
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    .footer-col h4 {
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col ul li {
+      font-size: 0.88rem;
+      padding: 5px 0;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li:hover { color: var(--clr-accent); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .about-grid,
+      .contact-grid,
+      .payment-grid,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">[Nama Usaha]</div>
+      <ul class="nav-links">
+        <li><a href="#produk">Produk</a></li>
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#sosmed">Sosial Media</a></li>
+        <li><a href="#pembayaran">Pembayaran</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO (Tap 1) -->
+  <section class="hero">
+    <div class="hero-badge">Usaha Halal & Terpercaya</div>
+    <h1>[Nama Usaha]<br/><span>[Tagline Usaha]</span></h1>
+    <p class="hero-moto">"[Moto Usaha — diisi setelah dapat dari klien]"</p>
+    <p class="hero-nib">NIB: [Nomor Induk Berusaha]</p>
+    <div class="hero-cta">
+      <a href="#produk" class="btn btn-primary">Lihat Produk</a>
+      <a href="#kontak" class="btn btn-outline">Hubungi Kami</a>
+    </div>
+  </section>
+
+  <!-- PRODUK / RAK (Tap 1 & Tap 5) -->
+  <section id="produk">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Rak Produk</p>
+        <h2 class="section-title">Produk Kami</h2>
+        <p class="section-sub">Semua produk dibuat dengan kualitas terbaik dan bahan pilihan.</p>
+      </div>
+      <div class="product-grid">
+        <!-- Produk 1 -->
+        <div class="product-card">
+          <div class="product-img">[Foto Produk 1]</div>
+          <div class="product-info">
+            <div class="product-name">[Nama Produk 1]</div>
+            <div class="product-desc">[Deskripsi singkat produk. Isi setelah dapat data dari klien.]</div>
+            <div class="product-price">Rp [Harga]</div>
+          </div>
+        </div>
+        <!-- Produk 2 -->
+        <div class="product-card">
+          <div class="product-img">[Foto Produk 2]</div>
+          <div class="product-info">
+            <div class="product-name">[Nama Produk 2]</div>
+            <div class="product-desc">[Deskripsi singkat produk. Isi setelah dapat data dari klien.]</div>
+            <div class="product-price">Rp [Harga]</div>
+          </div>
+        </div>
+        <!-- Produk 3 -->
+        <div class="product-card">
+          <div class="product-img">[Foto Produk 3]</div>
+          <div class="product-info">
+            <div class="product-name">[Nama Produk 3]</div>
+            <div class="product-desc">[Deskripsi singkat produk. Isi setelah dapat data dari klien.]</div>
+            <div class="product-price">Rp [Harga]</div>
+          </div>
+        </div>
+        <!-- Produk 4 -->
+        <div class="product-card">
+          <div class="product-img">[Foto Produk 4]</div>
+          <div class="product-info">
+            <div class="product-name">[Nama Produk 4]</div>
+            <div class="product-desc">[Deskripsi singkat produk. Isi setelah dapat data dari klien.]</div>
+            <div class="product-price">Rp [Harga]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TENTANG USAHA (Tap 1 & Tap 14) -->
+  <section id="tentang">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-placeholder">[Foto Usaha / Logo]</div>
+        <div>
+          <p class="section-label">Tentang Kami</p>
+          <h2 class="section-title">[Nama Usaha]</h2>
+          <p style="color:var(--clr-muted); margin-bottom:16px; font-size:0.95rem;">
+            [Deskripsi usaha — cerita singkat tentang usaha, kapan berdiri, visi misi. Diisi setelah dapat data dari klien.]
+          </p>
+          <ul class="about-list">
+            <li>Berdiri sejak [Tahun Berdiri]</li>
+            <li>NIB: [Nomor Induk Berusaha]</li>
+            <li>Jam Operasional: [Senin–Sabtu, 08.00–17.00]</li>
+            <li>Lokasi: [Alamat Offline Usaha]</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOSMED & LINKTREE (Tap 2 & Tap 3) -->
+  <section id="sosmed">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Ikuti Kami</p>
+        <h2 class="section-title">Media Sosial & Linktree</h2>
+        <p class="section-sub">Temukan kami di berbagai platform digital.</p>
+      </div>
+      <div class="link-grid">
+        <a href="#" class="link-card">
+          <div class="link-icon">📸</div>
+          <div class="link-name">Instagram</div>
+          <div class="link-handle">@[username_ig]</div>
+        </a>
+        <a href="#" class="link-card">
+          <div class="link-icon">👥</div>
+          <div class="link-name">Facebook</div>
+          <div class="link-handle">[Nama FB Usaha]</div>
+        </a>
+        <a href="#" class="link-card">
+          <div class="link-icon">🎵</div>
+          <div class="link-name">TikTok</div>
+          <div class="link-handle">@[username_tiktok]</div>
+        </a>
+        <a href="#" class="link-card">
+          <div class="link-icon">▶️</div>
+          <div class="link-name">YouTube</div>
+          <div class="link-handle">[Nama Channel]</div>
+        </a>
+        <a href="#" class="link-card">
+          <div class="link-icon">🌿</div>
+          <div class="link-name">Linktree</div>
+          <div class="link-handle">linktr.ee/[username]</div>
+        </a>
+        <a href="#" class="link-card">
+          <div class="link-icon">💬</div>
+          <div class="link-name">WhatsApp</div>
+          <div class="link-handle">+62 [No WA Bisnis]</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PEMBAYARAN (Tap 7) -->
+  <section id="pembayaran">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Cara Bayar</p>
+        <h2 class="section-title">Metode Pembayaran</h2>
+        <p class="section-sub">Tersedia pembayaran offline dan online untuk kemudahan Anda.</p>
+      </div>
+      <div class="payment-grid">
+        <!-- Offline -->
+        <div class="payment-card">
+          <h3>💵 Offline (Cash)</h3>
+          <div class="payment-item">
+            <div class="payment-dot"></div>
+            <span>[Alamat Toko / Lokasi]</span>
+          </div>
+          <div class="payment-item">
+            <div class="payment-dot"></div>
+            <span>Google Map: [Link Maps]</span>
+          </div>
+        </div>
+        <!-- Transfer -->
+        <div class="payment-card">
+          <h3>🏦 Transfer Bank</h3>
+          <div class="payment-item">
+            <div class="payment-dot"></div>
+            <span>[Bank Syariah] — [No Rekening] a.n [Nama]</span>
+          </div>
+          <div class="payment-item">
+            <div class="payment-dot"></div>
+            <span>[Bank Konvensional] — [No Rekening] a.n [Nama]</span>
+          </div>
+          <div class="payment-item">
+            <div class="payment-dot"></div>
+            <span>Dana / GoPay: +62 [No E-Wallet]</span>
+          </div>
+        </div>
+        <!-- QRIS -->
+        <div class="payment-card">
+          <h3>📱 QRIS</h3>
+          <div class="qris-placeholder">[Upload QRIS dari Klien]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAK & MAP (Tap 4 & Tap 8) -->
+  <section id="kontak">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Hubungi Kami</p>
+        <h2 class="section-title">Kontak & Lokasi</h2>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label">Alamat</div>
+              <div class="contact-value">[Alamat Lengkap Usaha Offline]</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div>
+              <div class="contact-label">WhatsApp / Telepon</div>
+              <div class="contact-value">+62 [No HP/WA Bisnis]</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value">[emailbisnis@gmail.com]</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🕐</div>
+            <div>
+              <div class="contact-label">Jam Operasional</div>
+              <div class="contact-value">[Senin–Sabtu: 08.00–17.00 WIB]</div>
+            </div>
+          </div>
+        </div>
+        <div class="map-placeholder">
+          <!-- Ganti dengan embed Google Maps dari klien -->
+          [Google Maps Embed — isi setelah dapat koordinat dari klien]
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POLICY USAHA (Tap 12) -->
+  <section id="policy">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Kebijakan</p>
+        <h2 class="section-title">Aturan & Kebijakan Usaha</h2>
+      </div>
+      <div class="policy-grid">
+        <div class="policy-card">
+          <h3>📋 Pemesanan</h3>
+          <p>[Aturan pemesanan — misalnya: DP minimal sekian %, konfirmasi sebelum jam sekian, dst. Diisi dari klien.]</p>
+        </div>
+        <div class="policy-card">
+          <h3>🔄 Pengembalian (Return)</h3>
+          <p>[Ketentuan return barang — kondisi apa yang bisa dikembalikan, batas waktu, prosedur. Diisi dari klien.]</p>
+        </div>
+        <div class="policy-card">
+          <h3>💬 Layanan Tanggapan</h3>
+          <p>[SLA respon — misal: kami merespons dalam 1x24 jam di hari kerja. Diisi dari klien.]</p>
+        </div>
+        <div class="policy-card">
+          <h3>📞 Kontak Kebijakan</h3>
+          <p>Pertanyaan soal kebijakan: [No WA / Email]. Tersedia [Jam Layanan].</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PENGIRIMAN (Tap 13) -->
+  <section id="pengiriman">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Pengiriman</p>
+        <h2 class="section-title">Layanan Pengiriman</h2>
+        <p class="section-sub">Tersedia COD, kurir resmi, dan marketplace terpercaya.</p>
+      </div>
+      <div class="shipping-row">
+        <span class="shipping-badge">🏠 COD (Bayar di Tempat)</span>
+        <span class="shipping-badge">📦 [JNE / J&T / SiCepat]</span>
+        <span class="shipping-badge">🛵 [GoFood / GrabFood — khusus makanan]</span>
+      </div>
+      <p class="section-label" style="margin-bottom:12px;">Tersedia di E-Commerce</p>
+      <div class="ecommerce-row">
+        <div class="ecommerce-card">🟢 Tokopedia — [Link Toko]</div>
+        <div class="ecommerce-card">🟠 Shopee — [Link Toko]</div>
+        <div class="ecommerce-card">🔵 Lazada — [Link Toko]</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIM & PENGELOLA (Tap 14) -->
+  <section id="tim">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Tim Kami</p>
+        <h2 class="section-title">Pengelola & Pemilik</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">👤</div>
+          <div class="team-name">[Nama Pemilik]</div>
+          <div class="team-role">Pemilik Usaha</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">👤</div>
+          <div class="team-name">[Nama Pengelola]</div>
+          <div class="team-role">Pengelola / Admin</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">👤</div>
+          <div class="team-name">[Nama Tim Packing]</div>
+          <div class="team-role">Tim Packing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PENGADUAN (Tap 15) -->
+  <section id="pengaduan">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Pengaduan</p>
+        <h2 class="section-title">Alur Pengaduan</h2>
+        <p class="section-sub">Kami berkomitmen menyelesaikan setiap keluhan dengan cepat dan transparan.</p>
+      </div>
+      <div class="complaint-steps">
+        <div class="complaint-step">
+          <div class="step-dot">1</div>
+          <div class="step-title">Hubungi Petugas Pengaduan</div>
+          <div class="step-desc">Kontak: [No WA / Email Pengaduan] — Petugas: [Nama Petugas]</div>
+        </div>
+        <div class="complaint-step">
+          <div class="step-dot">2</div>
+          <div class="step-title">Sampaikan Keluhan</div>
+          <div class="step-desc">Jelaskan detail keluhan disertai bukti (foto/video/struk pembelian).</div>
+        </div>
+        <div class="complaint-step">
+          <div class="step-dot">3</div>
+          <div class="step-title">Proses Verifikasi</div>
+          <div class="step-desc">Tim kami akan memverifikasi laporan dalam [X jam/hari kerja].</div>
+        </div>
+        <div class="complaint-step">
+          <div class="step-dot">4</div>
+          <div class="step-title">Penyelesaian</div>
+          <div class="step-desc">Solusi disampaikan dan diselesaikan sesuai kebijakan usaha.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand-name">[Nama Usaha]</div>
+          <p class="footer-brand-desc">
+            "[Moto Usaha]"<br/>
+            Usaha halal & amanah yang melayani dengan sepenuh hati.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigasi</h4>
+          <ul>
+            <li><a href="#produk">Produk</a></li>
+            <li><a href="#tentang">Tentang</a></li>
+            <li><a href="#pembayaran">Pembayaran</a></li>
+            <li><a href="#pengiriman">Pengiriman</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Lainnya</h4>
+          <ul>
+            <li><a href="#kontak">Kontak</a></li>
+            <li><a href="#policy">Kebijakan</a></li>
+            <li><a href="#pengaduan">Pengaduan</a></li>
+            <li><a href="#tim">Tim Kami</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 [Nama Usaha]. Semua hak dilindungi.</span>
+        <span>NIB: [Nomor Induk Berusaha]</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
