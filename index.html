@@ -488,18 +488,34 @@
 <script>
   // ───── PRODUCT DATA (placeholder — ganti saat data asli masuk) ─────
   const products = [
-    { id:1, name:"Pashmina Daily Adem", price:65000, desc:"Bahan jersey premium, adem & jatuh, cocok dipakai harian." },
-    { id:2, name:"Segi Empat Voal", price:55000, desc:"Voal premium ringan, mudah dibentuk untuk berbagai gaya." },
-    { id:3, name:"Pashmina Ceruti", price:75000, desc:"Tekstur flowy elegan, cocok untuk acara formal & kuliah." },
-    { id:4, name:"Bergo Instan Syar'i", price:60000, desc:"Praktis dipakai, tetap syar'i dan stylish untuk aktivitas padat." },
+    { id:1, name:"Pashmina Daily Jersey", price:45000, desc:"Bahan jersey premium, adem & elastis, stay seharian tanpa ribet." },
+    { id:2, name:"Segi Empat Voal Premium", price:42000, desc:"Voal premium ringan, mudah dibentuk, cocok untuk gaya formal & kasual." },
+    { id:3, name:"Pashmina Ceruti Babydoll", price:58000, desc:"Tekstur flowy elegan, jatuh lembut, cocok untuk acara formal & kuliah." },
+    { id:4, name:"Bergo Instan Syar'i", price:55000, desc:"Praktis dipakai tanpa pentul, tetap syar'i dan stylish untuk aktivitas padat." },
+    { id:5, name:"Pashmina Diamond Crepe", price:50000, desc:"Bahan ringan, tidak mudah kusut, jatuh rapi sepanjang hari." },
+    { id:6, name:"Segi Empat Motif Islami", price:48000, desc:"Motif kaligrafi & geometris minimalis, beri aksen tanpa berlebihan." },
+    { id:7, name:"Pashmina Viscose Lembut", price:52000, desc:"Karakter kain jatuh & lembut, tampil rapi untuk gaya harian minimal." },
+    { id:8, name:"Bergo Syar'i Double Layer", price:62000, desc:"Dua lapis untuk coverage lebih maksimal, nyaman & tidak mudah bergeser." },
   ];
 
   const grid = document.getElementById('productGrid');
-  products.forEach(p => {
+  const photos = [
+    'https://images.unsplash.com/photo-1542380841-5eef57349ca1?w=500&q=75',
+    'https://images.unsplash.com/photo-1585728748176-455ac5eed962?w=500&q=75',
+    'https://images.unsplash.com/photo-1590213363762-49b45897b5a7?w=500&q=75',
+    'https://images.unsplash.com/photo-1564779201-6015d3a4de3a?w=500&q=75',
+    'https://images.unsplash.com/photo-1545039539-69addd43b249?w=500&q=75',
+    'https://images.unsplash.com/photo-1574297500578-afae55026ff3?w=500&q=75',
+    'https://images.unsplash.com/photo-1651313950238-7f569c1fc2ba?w=500&q=75',
+    'https://images.unsplash.com/photo-1559468213-7650336d390d?w=500&q=75',
+  ];
+  products.forEach((p,i) => {
     const card = document.createElement('div');
     card.className = 'product-card';
     card.innerHTML = `
-      <div class="product-img">🧕</div>
+      <div class="product-img" style="background:none;padding:0;">
+        <img src="${photos[i % photos.length]}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>
+      </div>
       <div class="product-info">
         <div class="product-name">${p.name}</div>
         <div class="product-desc">${p.desc}</div>
